@@ -1,6 +1,5 @@
 " Pathogen setup
 execute pathogen#infect()
-
 " Editor view stuff
 syntax on
 set number
@@ -39,7 +38,7 @@ inoremap  <Down>   <NOP>
 inoremap  <Left>   <NOP>
 inoremap  <Right>  <NOP>
 noremap ; :
-imap jk <Esc> 
+imap kk <Esc> 
 
 " Tabs and such 
 map <C-n> :NERDTreeTabsToggle <CR>
