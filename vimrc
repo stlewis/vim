@@ -39,6 +39,7 @@ inoremap  <Down>   <NOP>
 inoremap  <Left>   <NOP>
 inoremap  <Right>  <NOP>
 noremap ; :
+imap jk <Esc> 
 
 " Tabs and such 
 map <C-n> :NERDTreeTabsToggle <CR>
