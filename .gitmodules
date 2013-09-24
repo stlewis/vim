@@ -34,3 +34,6 @@
 [submodule "bundle/neatstatus"]
 	path = bundle/neatstatus
 	url = git://github.com/maciakl/vim-neatstatus.git
+[submodule "bundle/ack.vim"]
+	path = bundle/ack.vim
+	url = https://github.com/mileszs/ack.vim.git
