@@ -8,7 +8,7 @@ set backspace=2
 set nowrap
 let g:solarized_termcolors=256
 let g:CommandTCancelMap=['<ESC>','<C-c>']
-colorscheme solarized
+colorscheme ir_black 
 
 filetype plugin indent on
 
