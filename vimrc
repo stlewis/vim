@@ -3,12 +3,11 @@ execute pathogen#infect()
 " Editor view stuff
 syntax on
 set number
-set background=dark
 set backspace=2
 set nowrap
-let g:solarized_termcolors=256
 let g:CommandTCancelMap=['<ESC>','<C-c>']
-colorscheme ir_black 
+set t_Co=256
+colorscheme ir_black
 
 filetype plugin indent on
 
@@ -38,7 +37,6 @@ inoremap  <Down>   <NOP>
 inoremap  <Left>   <NOP>
 inoremap  <Right>  <NOP>
 noremap ; :
-imap kk <Esc> 
 
 " Tabs and such 
 map <C-n> :NERDTreeTabsToggle <CR>
@@ -51,3 +49,6 @@ map <C-h> <C-w>h
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
+
+" Cursor is always a block, even in insert mode.
+set guicursor+=i:block-Cursor
