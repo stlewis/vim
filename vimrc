@@ -7,7 +7,7 @@ set backspace=2
 set nowrap
 let g:CommandTCancelMap=['<ESC>','<C-c>']
 set t_Co=256
-colorscheme ir_black
+colorscheme railscasts
 
 filetype plugin indent on
 
@@ -52,3 +52,6 @@ map <C-l> <C-w>l
 
 " Cursor is always a block, even in insert mode.
 set guicursor+=i:block-Cursor
+
+" Regex settings
+vnoremap / /\v
