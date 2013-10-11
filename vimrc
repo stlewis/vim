@@ -2,6 +2,10 @@
 execute pathogen#infect()
 " Editor view stuff
 syntax on
+set mouse=a "Use the mouse in all modes.
+" But add option to toggle it on and off.
+
+
 set number
 set backspace=2
 set nowrap
