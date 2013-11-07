@@ -1,5 +1,6 @@
 " Pathogen setup
 execute pathogen#infect()
+
 " Editor view stuff
 syntax on
 set mouse=a "Use the mouse in all modes.
@@ -9,6 +10,7 @@ set mouse=a "Use the mouse in all modes.
 set number
 set backspace=2
 set nowrap
+set showtabline=2
 let g:CommandTCancelMap=['<ESC>','<C-c>']
 set t_Co=256
 colorscheme railscasts
@@ -59,3 +61,10 @@ set guicursor+=i:block-Cursor
 
 " Regex settings
 vnoremap / /\v
+
+" Command-T Tweaks
+
+" Open selected file in new tab on carriage return, not CTRL+T"
+
+let g:CommandTAcceptSelectionTabMap='<CR>'
+let g:CommandTAcceptSelectionMap='<C-t>'

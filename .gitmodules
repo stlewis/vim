@@ -50,3 +50,9 @@
 	path = bundle/vim-surround
 	url = https://github.com/tpope/vim-surround.git
 
+[submodule "bundle/Mouse-Toggle"]
+	path = bundle/Mouse-Toggle
+	url = https://github.com/vim-scripts/Mouse-Toggle.git
+[submodule "bundle/tabline.vim"]
+	path = bundle/tabline.vim
+	url = https://github.com/mkitt/tabline.vim.git
