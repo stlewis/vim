@@ -62,6 +62,9 @@ set guicursor+=i:block-Cursor
 " Regex settings
 vnoremap / /\v
 
+" NerdTree Tabs Tweaks
+let g:nerdtree_tabs_focus_on_files=1
+
 " Command-T Tweaks
 
 " Open selected file in new tab on carriage return, not CTRL+T"
