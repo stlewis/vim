@@ -44,7 +44,7 @@ As noted in the documentation for the command-t plugin, it's important that it b
 
 ### Color Schemes
 
-I've included a couple color schemes that I like, and I default to the railscasts theme. 
+I've included a couple color schemes that I like, and I default to the distinguished theme. 
 
 ## Tweaks and modifications 
 
