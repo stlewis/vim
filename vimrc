@@ -46,9 +46,6 @@ noremap ; :
 
 " Tabs and such 
 map <C-n> :NERDTreeTabsToggle <CR>
-map <leader>n :tabnext <CR>
-map <leader>p :tabprev <CR>
-map <leader>w :tabclose <CR>
 
 "Window Switching
 map <C-h> <C-w>h
