@@ -13,7 +13,7 @@ set nowrap
 set showtabline=2
 let g:CommandTCancelMap=['<ESC>','<C-c>']
 set t_Co=256
-colorscheme railscasts
+colorscheme distinguished
 
 filetype plugin indent on
 
