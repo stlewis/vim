@@ -63,6 +63,10 @@ vnoremap / /\v
 " NerdTree Tabs Tweaks
 let g:nerdtree_tabs_focus_on_files=1
 
+" NerdTree Tweaks
+let NERDTreeMapOpenInTab='<CR>'
+let NERDTreeMapActivateNode='<Space>'
+
 " Command-T Tweaks
 
 " Open selected file in new tab on carriage return, not CTRL+T"
