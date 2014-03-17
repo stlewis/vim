@@ -1,6 +1,5 @@
 " Pathogen setup
 execute pathogen#infect()
-
 " Editor view stuff
 syntax on
 set mouse=a "Use the mouse in all modes.
@@ -30,6 +29,7 @@ set ignorecase
 set smartcase
 
 
+
 " Backups and swaps
 set nobackup
 set noswapfile
@@ -44,6 +44,9 @@ inoremap  <Down>   <NOP>
 inoremap  <Left>   <NOP>
 inoremap  <Right>  <NOP>
 noremap ; :
+
+" Quick mode switch
+set timeoutlen=1000 ttimeoutlen=0
 
 " Tabs and such 
 map <C-n> :NERDTreeTabsToggle <CR>
@@ -62,6 +65,7 @@ vnoremap / /\v
 
 " NerdTree Tabs Tweaks
 let g:nerdtree_tabs_focus_on_files=1
+let g:NERDTreeDirArrows=0
 
 " NerdTree Tweaks
 let NERDTreeMapOpenInTab='<CR>'
