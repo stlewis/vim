@@ -10,7 +10,6 @@ set number
 set backspace=2
 set nowrap
 set showtabline=2
-let g:CommandTCancelMap=['<ESC>','<C-c>']
 set t_Co=256
 set background=dark
 colorscheme distinguished
@@ -71,9 +70,13 @@ let g:NERDTreeDirArrows=0
 let NERDTreeMapOpenInTab='<CR>'
 let NERDTreeMapActivateNode='<Space>'
 
-" Command-T Tweaks
+" CtrlP Tweaks
+let g:ctrlp_map = '<Leader>t'
+let g:ctrlp_cmd = 'CtrlPMixed'
+let g:ctrlp_prompt_mappings = {
+  \'AcceptSelection("e")': ['<c-t>', '<2-LeftMouse>'],
+  \'AcceptSelection("t")': ['<c-t>', '<cr>'],
+\}
 
-" Open selected file in new tab on carriage return, not CTRL+T"
 
-let g:CommandTAcceptSelectionTabMap='<CR>'
-let g:CommandTAcceptSelectionMap='<C-t>'
+

@@ -91,10 +91,10 @@ https://github.com/garbas/vim-snipmate.git
 
 One of the most beautiful things about TextMate, (subsequently borrowed by Sublime Text), is the concept of snippets. To use a snippet, you just type a few letters and then auto-complete to insert an entire 'snippet' of text in to your file.  It's an incredibly handy feature, and snipmate brings that functionality to Vim.  I've included not only the Snipmate plugin, but also a bunch of snippets, which can be found in the snippets/ directory.
 
-**command-t**
-https://github.com/wincent/Command-T.git
+**ctrl-p**
+https://github.com/kien/ctrlp.vim.git
 
-Yet another beautiful idea borrowed from the makers of Textmate, this plugin allows you to perform 'fuzzy' file-search in your working directory. Simply hit the shortcut in normal mode, (Leader-t), and start typing any part of the path or file name for the file you want to find.  You'll get a list of possible matches that narrows down as you type more. I've tweaked a couple of Command-T settings, most notably, the default action when hitting Enter over a file will open it in a new tab rather than in the current buffer.
+I have been using Command-T to handle fuzzy file search, but the Ruby dependency and the extra step required to get it running annoyed me, so I swapped it for Ctrl-P,   which seems to do the job just as well, if not better because it's more efficient. Because my personal muscle-memory was already mapped to <Leader>t for invoking the    fuzzy search, I remapped Ctrl-P's defaults to use that.  Feel free to remove the remappings if you don't like them.  Also, as I had done with Command-T, I swapped the   behavior of <cr> inside the finder window.  Instead of opening the selected file in the current window, it opens it in a new tab.
 
 **neatstatus**
 https://github.com/maciakl/vim-neatstatus
