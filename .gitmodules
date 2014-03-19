@@ -67,4 +67,4 @@
 	url = https://github.com/groenewege/vim-less.git
 [submodule "bundle/ctrlp"]
 	path = bundle/ctrlp
-	url = git@github.com:kien/ctrlp.vim.git
+	url = https://github.com/kien/ctrlp.vim.git
