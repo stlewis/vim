@@ -21,15 +21,7 @@ I use pathogen to handle all of my plugins, and I bundle pathogen in with the re
   git submodule update
 </pre>
 
-The commands above will download all of the plugins for you. Once you've done that, you'll need to compile the command-t plugin:
-
-<pre>
-  cd ~/.vim/bundle/command-t/ruby/command-t
-  ruby extconf.rb
-  make
-</pre>
-
-As noted in the documentation for the command-t plugin, it's important that it be compiled using the same version of ruby that was used to compile your vim.
+The commands above will download all of the plugins for you. 
 
 * Create a symlink in your home directory to the vimrc file:
 
