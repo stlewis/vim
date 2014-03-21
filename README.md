@@ -40,15 +40,16 @@ I've included a couple color schemes that I like, and I default to the distingui
 
 ## Tweaks and modifications 
 
-I've done a number of customizations to my vimrc that you may or may not want to keep.  This isn't necessarily an exhaustive list, but I thought I'd list some of the bigger changes just in case you saw behavior you didn't like:
+I've done a number of customizations to my vimrc that you may or may not want to keep. Many of them are just minor things that work best with my particular workflow, so you may or may not want to change them. This isn't necessarily an exhaustive list, but I thought I'd list some of the bigger changes just in case you saw behavior you didn't like:
 
 * I've remapped the leader key to ',' instead of the default: '\'
 * I've set tabs to spaces, (expandtab)
 * My tabstop and shiftwidth are set at 2, (4 is preferred by some)
 * I've disabled the arrow keys. 
 * I've mapped CTRL+n to toggle NerdTree on and off. (More about NerdTree later)
-* I've remapped all of the window-switching commands to drop the 'w' portion. (So CTRL+w h) becomes CTRL+h to switch to a window left of your current one, for instance.
-* I like to use tabs, so I've mapped leader n to :tabnext, leader p to :tabprev and leader w to :tabclose
+* I've remapped all of the pane-switching commands to drop the 'w' portion. (So CTRL+w h) becomes CTRL+h to switch to a pane left of your current one, for instance.
+* I've changed the behavior of NERDTree such that hitting spacebar will expand directory nodes and open files in the current buffer, and hitting return will open the selected file and/or directory in a new tab.  It's a bit wonky, but it's easier for me than having to hit CTRL+T to open things in new tabs.
+* I did a similar hack to CTRL+P. Hitting return over a result will open it in a new tab, not in a new buffer.
 
 I should point out that none of the things above were necessarily my original idea, I've just done a lot of reading and plucked out the things I liked.
 
