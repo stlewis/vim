@@ -14,15 +14,6 @@ I use Vundle to handle all of my plugins, which is a relatively recent switch.  
 * Clone the repository in to your home directory under the name .vim:
 <pre>git clone https://github.com/stlewis/vim.git .vim</pre>
 
-* cd in to the .vim directory and issue the following commands:
-
-<pre>
-  git submodule init
-  git submodule update
-</pre>
-
-This will get Vundle ready to go for you.
-
 * Create a symlink in your home directory to the vimrc file:
 
 <pre>
