@@ -35,6 +35,7 @@ Plugin 'vim-scripts/bufkill.vim'
 Plugin 'thoughtbot/vim-rspec'
 Plugin 'tpope/vim-dispatch'
 Plugin 'godlygeek/tabular'
+Plugin 'terryma/vim-multiple-cursors'
 
 
 call vundle#end()
