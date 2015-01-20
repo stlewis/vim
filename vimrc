@@ -19,6 +19,7 @@ Plugin 'mileszs/ack.vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-repeat.git'
 Plugin 'vim-scripts/Mouse-Toggle'
 Plugin 'mkitt/tabline.vim'
 Plugin 'honza/vim-snippets'
@@ -59,7 +60,7 @@ set t_Co=256
 set background=dark
 set hlsearch
 set incsearch
-colorscheme nour
+colorscheme steve
 
 
 " File formatting
@@ -80,6 +81,15 @@ set nobackup
 set noswapfile
 
 
+" Default behavior tweaks
+"
+" Stop that annoying window from popping up -- Thanks Adam!
+map q: :q 
+" Get rid of sounds when you miskey a command
+set visualbell
+set noerrorbells
+" Clear out highlighting with a shortcut
+nnoremap <leader><space> :noh<cr>
 
 
 " Key Remaps
@@ -108,6 +118,7 @@ map <C-l> <C-w>l
 set guicursor+=i:block-Cursor
 
 " Regex settings
+nnoremap / /\v
 vnoremap / /\v
 
 " NerdTree Tabs Tweaks
@@ -145,5 +156,3 @@ setl errorformat+=%+G%.%#
 " Tabularize 
 map <Leader>= :Tabularize /=<CR>
 
-" Stop that stupid window from popping up...thanks Adam!
-map q: :q
