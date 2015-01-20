@@ -89,7 +89,7 @@ map q: :q
 set visualbell
 set noerrorbells
 " Clear out highlighting with a shortcut
-nnoremap <leader><space> :noh<cr>
+nnoremap <leader><Space> :noh<cr>
 
 
 " Key Remaps
