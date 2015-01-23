@@ -50,9 +50,12 @@ syntax on
 set mouse=a "Use the mouse in all modes.
 " But add option to toggle it on and off.
 set clipboard=unnamed " On mac, allow copy/paste between vim and everything else
+" Enable code folding based on syntax
+set foldmethod=syntax
+set foldlevelstart=99
 
 
-set number
+set relativenumber
 set backspace=2
 set nowrap
 set showtabline=2
@@ -62,6 +65,7 @@ set background=dark
 set hlsearch
 set incsearch
 colorscheme steve
+"colorscheme github
 
 
 " File formatting
@@ -105,7 +109,7 @@ noremap ; :
 set timeoutlen=1000 ttimeoutlen=0
 
 " Tabs and such 
-map <C-n> :NERDTreeTabsToggle <CR>
+map <F2> :NERDTreeTabsToggle <CR>
 " Allow for hidden unsaved buffers
 set hidden
 
