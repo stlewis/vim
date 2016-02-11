@@ -8,6 +8,7 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 Plugin 'Raimondi/delimitMate'
 Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/syntastic'
 Plugin 'ervandew/supertab'
 Plugin 'tomtom/tlib_vim'
 Plugin 'git://github.com/MarcWeber/vim-addon-mw-utils.git'
@@ -35,7 +36,13 @@ Plugin 'vim-scripts/bufkill.vim'
 Plugin 'thoughtbot/vim-rspec'
 Plugin 'tpope/vim-dispatch'
 Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
 Plugin 'terryma/vim-multiple-cursors'
+Plugin 'vim-scripts/taglist.vim'
+Plugin 'tpope/vim-fireplace.git'
+Plugin 'tpope/vim-leiningen.git'
+Plugin 'elixir-lang/vim-elixir'
+
 
 
 call vundle#end()
@@ -55,7 +62,8 @@ set foldmethod=syntax
 set foldlevelstart=99
 
 
-set relativenumber
+set number " Show the current line number instead of 0
+set relativenumber " But all other line numbers are relative to the current one
 set backspace=2
 set nowrap
 set showtabline=2
@@ -99,11 +107,15 @@ nnoremap <leader><Space> :noh<cr>
 
 " Key Remaps
 let mapleader=","
-inoremap  <Up>     <NOP>
-inoremap  <Down>   <NOP>
-inoremap  <Left>   <NOP>
-inoremap  <Right>  <NOP>
+
+" Make arrow keys do something useful, resize the viewports accordingly
+nnoremap <Right> :vertical resize +5<CR>
+nnoremap <Left> :vertical resize -5<CR>
+nnoremap <Down> :resize +5<CR>
+nnoremap <Up> :resize -5<CR>
 noremap ; :
+noremap < <gv
+noremap > >gv
 
 " Quick mode switch
 set timeoutlen=1000 ttimeoutlen=0
@@ -121,6 +133,7 @@ map <C-l> <C-w>l
 
 " Cursor is always a block, even in insert mode.
 set guicursor+=i:block-Cursor
+set cursorline
 
 " Regex settings
 nnoremap / /\v
@@ -150,6 +163,8 @@ noremap gT :bprev<CR>
 
 " Configure Ack.vim to use ag instead of ack
 let g:ackprg = 'ag --nogroup --nocolor --column'
+" Configure Ack.vim to search in the background using vim-dispatch
+let g:ack_use_dispatch = 1
 
 " Configure vim-rspec commands
 map <Leader>s :call RunNearestSpec()<CR>
@@ -160,4 +175,25 @@ setl errorformat+=%+G%.%#
 
 " Tabularize 
 map <Leader>= :Tabularize /=<CR>
+
+" Word Processor Mode
+
+func! WordProcessorMode() 
+  setlocal formatoptions=1 
+  set formatoptions+=t
+  setlocal noexpandtab 
+  map j gj 
+  map k gk
+  setlocal spell spelllang=en_us 
+  set thesaurus+=/Users/sbrown/.vim/thesaurus/mthesaur.txt
+  set complete+=s
+  set formatprg=par\ -w80
+  setlocal wrap 
+  setlocal linebreak 
+  set nonumber
+  set norelativenumber
+  set tw=80
+  colorscheme lodestone
+endfu 
+com! WP call WordProcessorMode()
 
