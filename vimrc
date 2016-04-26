@@ -42,6 +42,8 @@ Plugin 'vim-scripts/taglist.vim'
 Plugin 'tpope/vim-fireplace.git'
 Plugin 'tpope/vim-leiningen.git'
 Plugin 'elixir-lang/vim-elixir'
+Plugin 'xolox/vim-misc'
+Plugin 'xolox/vim-colorscheme-switcher'
 
 
 
@@ -72,8 +74,8 @@ set t_Co=256
 set background=dark
 set hlsearch
 set incsearch
-colorscheme steve
-"colorscheme github
+colorscheme made_of_code 
+"colorscheme steve
 
 
 " File formatting
