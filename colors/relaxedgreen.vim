@@ -21,7 +21,7 @@ let g:colors_name = "relaxedgreen"
 highlight Cursor        term=reverse      ctermfg=green ctermbg=blue                      guifg=#000000 guibg=#559955
 highlight CursorIM      term=reverse      ctermfg=black ctermbg=darkgreen                 guifg=#000000 guibg=#336633
 highlight CursorColumn  term=none         ctermbg=darkred                                 guibg=#663333
-highlight CursorLine    term=none         ctermbg=darkblue                                guibg=#333366
+highlight CursorLine    term=none         ctermbg=darkblue                                guibg=#222222
 highlight Comment       term=italic       ctermfg=darkcyan ctermbg=black                  guifg=#00a594
 highlight Constant      term=underline    ctermfg=blue                                    guifg=#0099dd
 highlight Debug         term=bold         ctermfg=red ctermbg=black                       guifg=#dc0000 guibg=#000000

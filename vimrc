@@ -1,7 +1,5 @@
-set nocompatible
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
-
 call vundle#begin()
 
 " Vundle Plugins
@@ -31,7 +29,7 @@ Plugin 'groenewege/vim-less'
 Plugin 'kien/ctrlp.vim'
 Plugin 'sukima/xmledit'
 Plugin 'vim-scripts/CSApprox'
-Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline'
 Plugin 'vim-scripts/bufkill.vim'
 Plugin 'thoughtbot/vim-rspec'
 Plugin 'tpope/vim-dispatch'
@@ -44,44 +42,35 @@ Plugin 'tpope/vim-leiningen.git'
 Plugin 'elixir-lang/vim-elixir'
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-colorscheme-switcher'
+Plugin 'reedes/vim-pencil'
+Plugin 'vimoutliner/vimoutliner'
 
 
 
 call vundle#end()
 filetype plugin indent on
-
-
-
+set nocompatible
+set backspace=2
+let mapleader=","
 
 
 " Editor view stuff
 syntax on
-set mouse=a "Use the mouse in all modes.
-" But add option to toggle it on and off.
 set clipboard=unnamed " On mac, allow copy/paste between vim and everything else
-" Enable code folding based on syntax
-set foldmethod=syntax
-set foldlevelstart=99
-
-
+set pastetoggle=<Leader>p
 set number " Show the current line number instead of 0
 set relativenumber " But all other line numbers are relative to the current one
-set backspace=2
 set nowrap
-set showtabline=2
 set scrolloff=1
-set t_Co=256
+colorscheme relaxedgreen
 set background=dark
-set hlsearch
-set incsearch
-colorscheme made_of_code 
-"colorscheme steve
+set guifont="Sauce Code Powerline:h11"
+set foldlevelstart=99
 
 
 " File formatting
 set expandtab
 set tabstop=2
-set autoindent
 set copyindent
 set shiftwidth=2
 set shiftround
@@ -103,12 +92,7 @@ map q: :q
 " Get rid of sounds when you miskey a command
 set visualbell
 set noerrorbells
-" Clear out highlighting with a shortcut
-nnoremap <leader><Space> :noh<cr>
 
-
-" Key Remaps
-let mapleader=","
 
 " Make arrow keys do something useful, resize the viewports accordingly
 nnoremap <Right> :vertical resize +5<CR>
@@ -127,15 +111,11 @@ map <F2> :NERDTreeTabsToggle <CR>
 " Allow for hidden unsaved buffers
 set hidden
 
-"Window Switching
-map <C-h> <C-w>h
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-l> <C-w>l
 
 " Cursor is always a block, even in insert mode.
 set guicursor+=i:block-Cursor
 set cursorline
+
 
 " Regex settings
 nnoremap / /\v
@@ -143,7 +123,6 @@ vnoremap / /\v
 
 " NerdTree Tabs Tweaks
 let g:nerdtree_tabs_focus_on_files=1
-let g:NERDTreeDirArrows=0
 
 
 " CtrlP Tweaks
@@ -151,7 +130,6 @@ let g:ctrlp_map = '<Leader>t'
 let g:ctrlp_cmd = 'CtrlPMixed'
  
 " Tweak matched pair handling for HTML files
-
 au FileType xml,xsd,html let b:delimitMate_matchpairs = "(:),[:],{:}"
 
 
@@ -159,9 +137,18 @@ au FileType xml,xsd,html let b:delimitMate_matchpairs = "(:),[:],{:}"
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'  
 
+let g:airline_powerline_fonts = 1
+
 " Remap tabline buffer switching to behave like tab switching
 noremap gt :bnext<CR>
 noremap gT :bprev<CR>
+
+"Swap Windows more easily,
+"nnoremap <C-j> <C-w>j
+nn <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+nnoremap <C-h> <C-w>h
 
 " Configure Ack.vim to use ag instead of ack
 let g:ackprg = 'ag --nogroup --nocolor --column'
@@ -175,27 +162,11 @@ map <Leader>a :call RunAllSpecs()<CR>
 let g:rspec_command = "Dispatch bundle exec rspec {spec}"
 setl errorformat+=%+G%.%#
 
-" Tabularize 
-map <Leader>= :Tabularize /=<CR>
 
-" Word Processor Mode
-
-func! WordProcessorMode() 
-  setlocal formatoptions=1 
-  set formatoptions+=t
-  setlocal noexpandtab 
-  map j gj 
-  map k gk
-  setlocal spell spelllang=en_us 
-  set thesaurus+=/Users/sbrown/.vim/thesaurus/mthesaur.txt
-  set complete+=s
-  set formatprg=par\ -w80
-  setlocal wrap 
-  setlocal linebreak 
-  set nonumber
-  set norelativenumber
-  set tw=80
-  colorscheme lodestone
-endfu 
-com! WP call WordProcessorMode()
-
+let g:pencil#autoformat=1
+let g:pencil#textwidth=80
+augroup pencil
+  autocmd!
+  autocmd FileType markdown,mkd call pencil#init()
+  autocmd FileType text call pencil#init()
+augroup END
