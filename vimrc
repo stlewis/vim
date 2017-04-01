@@ -107,7 +107,7 @@ noremap > >gv
 set timeoutlen=1000 ttimeoutlen=0
 
 " Tabs and such 
-map <F2> :NERDTreeTabsToggle <CR>
+map <Leader>n :NERDTreeTabsToggle <CR>
 " Allow for hidden unsaved buffers
 set hidden
 
