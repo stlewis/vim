@@ -44,10 +44,14 @@ Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-colorscheme-switcher'
 Plugin 'reedes/vim-pencil'
 Plugin 'vimoutliner/vimoutliner'
+Plugin 'leafgarland/typescript-vim'
+Plugin 'caglartoklu/ftcolor.vim'
+
 
 
 
 call vundle#end()
+
 filetype plugin indent on
 set nocompatible
 set backspace=2
@@ -62,7 +66,7 @@ set number " Show the current line number instead of 0
 set relativenumber " But all other line numbers are relative to the current one
 set nowrap
 set scrolloff=1
-colorscheme relaxedgreen
+colorscheme ir_black
 set background=dark
 set guifont="Sauce Code Powerline:h11"
 set foldlevelstart=99
@@ -89,6 +93,7 @@ set noswapfile
 "
 " Stop that annoying window from popping up -- Thanks Adam!
 map q: :q 
+
 " Get rid of sounds when you miskey a command
 set visualbell
 set noerrorbells
@@ -100,14 +105,9 @@ nnoremap <Left> :vertical resize -5<CR>
 nnoremap <Down> :resize +5<CR>
 nnoremap <Up> :resize -5<CR>
 noremap ; :
-noremap < <gv
-noremap > >gv
 
 " Quick mode switch
 set timeoutlen=1000 ttimeoutlen=0
-
-" Tabs and such 
-map <Leader>n :NERDTreeTabsToggle <CR>
 " Allow for hidden unsaved buffers
 set hidden
 
@@ -123,6 +123,7 @@ vnoremap / /\v
 
 " NerdTree Tabs Tweaks
 let g:nerdtree_tabs_focus_on_files=1
+map <Leader>n :NERDTreeTabsToggle <CR>
 
 
 " CtrlP Tweaks
