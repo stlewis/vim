@@ -13,7 +13,7 @@ Plugin 'git://github.com/MarcWeber/vim-addon-mw-utils.git'
 Plugin 'tpope/vim-bundler'
 Plugin 'tpope/vim-fugitive'
 Plugin 'jistr/vim-nerdtree-tabs'
-Plugin 'garbas/vim-snipmate'
+Plugin 'SirVer/ultisnips'
 Plugin 'mileszs/ack.vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'kchmck/vim-coffee-script'
@@ -46,6 +46,10 @@ Plugin 'reedes/vim-pencil'
 Plugin 'vimoutliner/vimoutliner'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'caglartoklu/ftcolor.vim'
+Plugin 'OrangeT/vim-csharp'
+Plugin 'OmniSharp/omnisharp-vim'
+Plugin 'Shougo/vimproc.vim'
+Plugin 'Valloric/YouCompleteMe'
 
 
 
@@ -54,6 +58,7 @@ call vundle#end()
 
 filetype plugin indent on
 set nocompatible
+set noshowmatch
 set backspace=2
 let mapleader=","
 
@@ -66,9 +71,10 @@ set number " Show the current line number instead of 0
 set relativenumber " But all other line numbers are relative to the current one
 set nowrap
 set scrolloff=1
-colorscheme ir_black
 set background=dark
-set guifont="Sauce Code Powerline:h11"
+if has('gui_running')
+  set guifont=Sauce\ Code\ Powerline:h18
+endif
 set foldlevelstart=99
 
 
@@ -121,9 +127,13 @@ set cursorline
 nnoremap / /\v
 vnoremap / /\v
 
+" Shift completion
+vnoremap > >gv
+vnoremap < <gv
+
 " NerdTree Tabs Tweaks
 let g:nerdtree_tabs_focus_on_files=1
-map <Leader>n :NERDTreeTabsToggle <CR>
+map <F2> :NERDTreeTabsToggle <CR>
 
 
 " CtrlP Tweaks
@@ -171,3 +181,33 @@ augroup pencil
   autocmd FileType markdown,mkd call pencil#init()
   autocmd FileType text call pencil#init()
 augroup END
+
+" Colorscheme Per Buffer
+colorscheme ir_black
+let g:ftcolor_plugin_enabled          = 1
+let g:ftcolor_redraw                  = 1
+let g:ftcolor_default_color_scheme    = 'ir_black'
+let g:ftcolor_custom_command          = 'AirlineRefresh'
+
+let g:ftcolor_color_mappings          = {}
+let g:ftcolor_color_mappings.markdown = ['no_quarter', 'dark']
+
+ 
+" Supertab for Omnisharp and other omnisharp settings
+let g:SuperTabDefaultCompletionType = '<C-n>'
+let g:SuperTabContextDefaultCompletionType = "<c-x><c-o>"
+let g:SuperTabDefaultCompletionTypeDiscovery = ["&omnifunc:<c-x><c-o>","&completefunc:<c-x><c-n>"]
+let g:SuperTabClosePreviewOnPopupClose = 1
+
+
+
+" make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+
+" better key bindings for UltiSnipsExpandTrigger
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+
+set completeopt=longest,menuone,preview
