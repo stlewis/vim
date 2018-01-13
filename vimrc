@@ -50,6 +50,8 @@ Plugin 'OrangeT/vim-csharp'
 Plugin 'OmniSharp/omnisharp-vim'
 Plugin 'Shougo/vimproc.vim'
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
 
 
 
@@ -131,6 +133,12 @@ vnoremap / /\v
 vnoremap > >gv
 vnoremap < <gv
 
+" Don't replace copy buffer with pasted over contents
+vnoremap p "_dP
+
+" JSX stuff
+let g:jsx_ext_required = 0
+
 " NerdTree Tabs Tweaks
 let g:nerdtree_tabs_focus_on_files=1
 map <F2> :NERDTreeTabsToggle <CR>
@@ -209,5 +217,9 @@ let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+
+" Options for NerdCommenter
+let g:NERDDefaultAlign='left'
+map <Leader>// <Plug>NERDCommenterToggle('n', 'Toggle')<Cr>
 
 set completeopt=longest,menuone,preview
