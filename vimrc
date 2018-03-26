@@ -52,6 +52,7 @@ Plugin 'Shougo/vimproc.vim'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
+Plugin 'flazz/vim-colorschemes'
 
 
 
@@ -67,6 +68,8 @@ let mapleader=","
 
 " Editor view stuff
 syntax on
+colorscheme fnaqevan
+
 set clipboard=unnamed " On mac, allow copy/paste between vim and everything else
 set pastetoggle=<Leader>p
 set number " Show the current line number instead of 0
@@ -100,7 +103,7 @@ set noswapfile
 " Default behavior tweaks
 "
 " Stop that annoying window from popping up -- Thanks Adam!
-map q: :q 
+map q: :q
 
 " Get rid of sounds when you miskey a command
 set visualbell
@@ -112,7 +115,11 @@ nnoremap <Right> :vertical resize +5<CR>
 nnoremap <Left> :vertical resize -5<CR>
 nnoremap <Down> :resize +5<CR>
 nnoremap <Up> :resize -5<CR>
+
+" Remap semi-colon to colon to save a shift keystroke
 noremap ; :
+
+noremap <F10> :RandomColorScheme<CR>
 
 " Quick mode switch
 set timeoutlen=1000 ttimeoutlen=0
@@ -122,7 +129,7 @@ set hidden
 
 " Cursor is always a block, even in insert mode.
 set guicursor+=i:block-Cursor
-set cursorline
+"set cursorline
 
 
 " Regex settings
@@ -136,25 +143,37 @@ vnoremap < <gv
 " Don't replace copy buffer with pasted over contents
 vnoremap p "_dP
 
+" Remove trailing whitespace on save
+autocmd BufWritePre * :%s/\s\+$//e
+
 " JSX stuff
 let g:jsx_ext_required = 0
 
 " NerdTree Tabs Tweaks
 let g:nerdtree_tabs_focus_on_files=1
+let g:nerdtree_tabs_autofind=1
+let g:nerdtree_tabs_open_on_console_startup=1
+
 map <F2> :NERDTreeTabsToggle <CR>
+let NERDTreeAutoDeleteBuffer = 1
+let NERDTreeCascadeSingleChildDir=0
+
+nnoremap <silent> <Leader>v :NERDTreeTabsFind<CR>
+
+
 
 
 " CtrlP Tweaks
 let g:ctrlp_map = '<Leader>t'
 let g:ctrlp_cmd = 'CtrlPMixed'
- 
+
 " Tweak matched pair handling for HTML files
 au FileType xml,xsd,html let b:delimitMate_matchpairs = "(:),[:],{:}"
 
 
 " Tabline Fix
 let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#fnamemod = ':t'  
+let g:airline#extensions#tabline#fnamemod = ':t'
 
 let g:airline_powerline_fonts = 1
 
@@ -190,17 +209,8 @@ augroup pencil
   autocmd FileType text call pencil#init()
 augroup END
 
-" Colorscheme Per Buffer
-colorscheme ir_black
-let g:ftcolor_plugin_enabled          = 1
-let g:ftcolor_redraw                  = 1
-let g:ftcolor_default_color_scheme    = 'ir_black'
-let g:ftcolor_custom_command          = 'AirlineRefresh'
 
-let g:ftcolor_color_mappings          = {}
-let g:ftcolor_color_mappings.markdown = ['no_quarter', 'dark']
 
- 
 " Supertab for Omnisharp and other omnisharp settings
 let g:SuperTabDefaultCompletionType = '<C-n>'
 let g:SuperTabContextDefaultCompletionType = "<c-x><c-o>"
