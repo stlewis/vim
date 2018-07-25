@@ -15,6 +15,7 @@ Plugin 'ervandew/supertab'
 Plugin 'kien/ctrlp.vim'
 Plugin 'vim-scripts/CSApprox'
 Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'vim-scripts/bufkill.vim'
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-colorscheme-switcher'
@@ -66,9 +67,6 @@ Plugin 'Valloric/YouCompleteMe'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 Plugin 'othree/html5.vim'
-
-
-
 
 call vundle#end()
 
@@ -181,8 +179,8 @@ au FileType xml,xsd,html let b:delimitMate_matchpairs = "(:),[:],{:}"
 " Tabline Fix
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
-
 let g:airline_powerline_fonts = 1
+let g:airline_theme='distinguished'
 
 " Remap tabline buffer switching to behave like tab switching
 noremap gt :bnext<CR>
