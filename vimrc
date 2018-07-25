@@ -2,57 +2,70 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
-" Vundle Plugins
+" Vundle Base Plugins
 Plugin 'gmarik/Vundle.vim'
-Plugin 'Raimondi/delimitMate'
-Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/syntastic'
-Plugin 'ervandew/supertab'
+" Dependency Plugins
 Plugin 'tomtom/tlib_vim'
 Plugin 'git://github.com/MarcWeber/vim-addon-mw-utils.git'
-Plugin 'tpope/vim-bundler'
-Plugin 'tpope/vim-fugitive'
+
+"UI/UX Plugins
+Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
+Plugin 'ervandew/supertab'
+Plugin 'kien/ctrlp.vim'
+Plugin 'vim-scripts/CSApprox'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-scripts/bufkill.vim'
+Plugin 'xolox/vim-misc'
+Plugin 'xolox/vim-colorscheme-switcher'
+Plugin 'flazz/vim-colorschemes'
+Plugin 'vim-scripts/taglist.vim'
+Plugin 'reedes/vim-pencil'
+Plugin 'vimoutliner/vimoutliner'
+
+" Input modification Plugins
+Plugin 'vim-scripts/Mouse-Toggle'
+
+" Shortcut/Snippet Plugins
 Plugin 'SirVer/ultisnips'
-Plugin 'mileszs/ack.vim'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'kchmck/vim-coffee-script'
+Plugin 'honza/vim-snippets'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat.git'
-Plugin 'vim-scripts/Mouse-Toggle'
-Plugin 'mkitt/tabline.vim'
-Plugin 'honza/vim-snippets'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'Raimondi/delimitMate'
+
+" Other source modification plugins
+Plugin 'godlygeek/tabular'
+Plugin 'terryma/vim-multiple-cursors'
+
+" External Tools Plugins
+Plugin 'mileszs/ack.vim'
+Plugin 'tpope/vim-bundler'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-dispatch'
+Plugin 'tpope/vim-fireplace.git'
+Plugin 'tpope/vim-leiningen.git'
+
+
+" Syntax/Language Support Plugins
+Plugin 'scrooloose/syntastic'
+Plugin 'kchmck/vim-coffee-script'
 Plugin 'slim-template/vim-slim'
 Plugin 'stlewis/vim-rails'
 Plugin 'digitaltoad/vim-jade'
 Plugin 'groenewege/vim-less'
-Plugin 'kien/ctrlp.vim'
 Plugin 'sukima/xmledit'
-Plugin 'vim-scripts/CSApprox'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-scripts/bufkill.vim'
 Plugin 'thoughtbot/vim-rspec'
-Plugin 'tpope/vim-dispatch'
-Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'vim-scripts/taglist.vim'
-Plugin 'tpope/vim-fireplace.git'
-Plugin 'tpope/vim-leiningen.git'
 Plugin 'elixir-lang/vim-elixir'
-Plugin 'xolox/vim-misc'
-Plugin 'xolox/vim-colorscheme-switcher'
-Plugin 'reedes/vim-pencil'
-Plugin 'vimoutliner/vimoutliner'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'caglartoklu/ftcolor.vim'
 Plugin 'OrangeT/vim-csharp'
 Plugin 'OmniSharp/omnisharp-vim'
-Plugin 'Shougo/vimproc.vim'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
-Plugin 'flazz/vim-colorschemes'
+Plugin 'othree/html5.vim'
 
 
 
@@ -68,7 +81,7 @@ let mapleader=","
 
 " Editor view stuff
 syntax on
-colorscheme fnaqevan
+colorscheme void
 
 set clipboard=unnamed " On mac, allow copy/paste between vim and everything else
 set pastetoggle=<Leader>p
@@ -80,6 +93,7 @@ set background=dark
 if has('gui_running')
   set guifont=Sauce\ Code\ Powerline:h18
 endif
+set foldmethod=syntax
 set foldlevelstart=99
 
 
@@ -149,19 +163,12 @@ autocmd BufWritePre * :%s/\s\+$//e
 " JSX stuff
 let g:jsx_ext_required = 0
 
-" NerdTree Tabs Tweaks
-let g:nerdtree_tabs_focus_on_files=1
-let g:nerdtree_tabs_autofind=1
+" NerdTree Tweaks
 let g:nerdtree_tabs_open_on_console_startup=1
 
 map <F2> :NERDTreeTabsToggle <CR>
 let NERDTreeAutoDeleteBuffer = 1
 let NERDTreeCascadeSingleChildDir=0
-
-nnoremap <silent> <Leader>v :NERDTreeTabsFind<CR>
-
-
-
 
 " CtrlP Tweaks
 let g:ctrlp_map = '<Leader>t'
