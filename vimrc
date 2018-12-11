@@ -23,6 +23,7 @@ Plugin 'flazz/vim-colorschemes'
 Plugin 'vim-scripts/taglist.vim'
 Plugin 'reedes/vim-pencil'
 Plugin 'vimoutliner/vimoutliner'
+Plugin 'yegappan/mru'
 
 " Input modification Plugins
 Plugin 'vim-scripts/Mouse-Toggle'
@@ -57,22 +58,24 @@ Plugin 'digitaltoad/vim-jade'
 Plugin 'groenewege/vim-less'
 Plugin 'sukima/xmledit'
 Plugin 'thoughtbot/vim-rspec'
+Plugin 'janko-m/vim-test'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'elixir-lang/vim-elixir'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'caglartoklu/ftcolor.vim'
 Plugin 'OrangeT/vim-csharp'
 Plugin 'OmniSharp/omnisharp-vim'
-Plugin 'Valloric/YouCompleteMe'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 Plugin 'othree/html5.vim'
+Plugin 'reedes/vim-thematic'
 
 call vundle#end()
 
 filetype plugin indent on
 set nocompatible
 set noshowmatch
+set noshowmode
 set backspace=2
 let mapleader=","
 
@@ -162,7 +165,7 @@ autocmd BufWritePre * :%s/\s\+$//e
 let g:jsx_ext_required = 0
 
 " NerdTree Tweaks
-let g:nerdtree_tabs_open_on_console_startup=1
+let g:nerdtree_tabs_open_on_console_startup=2
 
 map <F2> :NERDTreeTabsToggle <CR>
 let NERDTreeAutoDeleteBuffer = 1
@@ -199,12 +202,16 @@ let g:ackprg = 'ag --nogroup --nocolor --column'
 let g:ack_use_dispatch = 1
 
 " Configure vim-rspec commands
-map <Leader>s :call RunNearestSpec()<CR>
-map <Leader>S :call RunCurrentSpecFile()<CR>
-map <Leader>a :call RunAllSpecs()<CR>
-let g:rspec_command = "Dispatch bundle exec rspec {spec}"
-setl errorformat+=%+G%.%#
+"map <Leader>s :call RunNearestSpec()<CR>
+"map <Leader>S :call RunCurrentSpecFile()<CR>
+"map <Leader>a :call RunAllSpecs()<CR>
+"let g:rspec_command = 'Dispatch bundle exec rspec {spec}'
+"setl errorformat+=%+G%.%#
 
+let test#strategy = "dispatch"
+nmap <silent> <Leader>s :TestNearest<CR>
+nmap <silent> <Leader>S :TestFile<CR>
+nmap <silent> <Leader>A :TestSuite<CR>
 
 let g:pencil#autoformat=1
 let g:pencil#textwidth=80
@@ -213,6 +220,17 @@ augroup pencil
   autocmd FileType markdown,mkd call pencil#init()
   autocmd FileType text call pencil#init()
 augroup END
+
+let g:thematic#themes = {
+\ 'writing' : { 'colorscheme': 'pencil',
+\               'background': 'light',
+\               'airline-theme': 'light',
+\               'ruler': 0,
+\               'sign-column-color-fix': 1,
+\               'number-column-color-mute': 1
+\                },
+\ }
+
 
 
 
@@ -238,3 +256,10 @@ let g:NERDDefaultAlign='left'
 map <Leader>// <Plug>NERDCommenterToggle('n', 'Toggle')<Cr>
 
 set completeopt=longest,menuone,preview
+
+function! JrnlSettings()
+  set ft=markdown
+  NERDTreeClose
+  Thematic writing
+endfunction
+command! JrnlSettings call JrnlSettings()
