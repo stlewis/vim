@@ -22,6 +22,7 @@ Plugin 'xolox/vim-colorscheme-switcher'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'vim-scripts/taglist.vim'
 Plugin 'reedes/vim-pencil'
+Plugin 'reedes/vim-colors-pencil'
 Plugin 'vimoutliner/vimoutliner'
 Plugin 'yegappan/mru'
 
@@ -82,7 +83,8 @@ let mapleader=","
 
 " Editor view stuff
 syntax on
-colorscheme void
+colorscheme welpe
+"colorscheme pencil
 
 set clipboard=unnamed " On mac, allow copy/paste between vim and everything else
 set pastetoggle=<Leader>p
@@ -92,7 +94,7 @@ set nowrap
 set scrolloff=1
 set background=dark
 if has('gui_running')
-  set guifont=Sauce\ Code\ Powerline:h18
+  set guifont=Source\ Code\ Powerline:h18
 endif
 set foldmethod=syntax
 set foldlevelstart=99
@@ -256,9 +258,13 @@ let g:NERDDefaultAlign='left'
 map <Leader>// <Plug>NERDCommenterToggle('n', 'Toggle')<Cr>
 
 set completeopt=longest,menuone,preview
+let g:pencil_terminal_italics = 1
 
 function! JrnlSettings()
   set ft=markdown
+  set spell
+  set foldcolumn=10
+  set foldmethod=manual
   NERDTreeClose
   Thematic writing
 endfunction
