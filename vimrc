@@ -11,7 +11,6 @@ Plugin 'git://github.com/MarcWeber/vim-addon-mw-utils.git'
 "UI/UX Plugins
 Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
-Plugin 'ervandew/supertab'
 Plugin 'kien/ctrlp.vim'
 Plugin 'vim-scripts/CSApprox'
 Plugin 'vim-airline/vim-airline'
@@ -25,6 +24,7 @@ Plugin 'reedes/vim-pencil'
 Plugin 'reedes/vim-colors-pencil'
 Plugin 'vimoutliner/vimoutliner'
 Plugin 'yegappan/mru'
+Plugin 'Valloric/YouCompleteMe'
 
 " Input modification Plugins
 Plugin 'vim-scripts/Mouse-Toggle'
@@ -83,7 +83,7 @@ let mapleader=","
 
 " Editor view stuff
 syntax on
-colorscheme welpe
+colorscheme xterm16
 "colorscheme pencil
 
 set clipboard=unnamed " On mac, allow copy/paste between vim and everything else
@@ -96,7 +96,7 @@ set background=dark
 if has('gui_running')
   set guifont=Source\ Code\ Powerline:h18
 endif
-set foldmethod=syntax
+set foldmethod=manual
 set foldlevelstart=99
 
 
@@ -224,9 +224,10 @@ augroup pencil
 augroup END
 
 let g:thematic#themes = {
-\ 'writing' : { 'colorscheme': 'pencil',
-\               'background': 'light',
-\               'airline-theme': 'light',
+\ 'writing' : {
+\               'colorscheme': 'pencil',
+\               'background': 'dark',
+\               'airline-theme': 'dark',
 \               'ruler': 0,
 \               'sign-column-color-fix': 1,
 \               'number-column-color-mute': 1
@@ -245,13 +246,14 @@ let g:SuperTabClosePreviewOnPopupClose = 1
 
 
 " make YCM compatible with UltiSnips (using supertab)
-let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+"let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+"let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 
 " better key bindings for UltiSnipsExpandTrigger
-let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsExpandTrigger = "<Leader><Space>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+
 
 " Options for NerdCommenter
 let g:NERDDefaultAlign='left'
