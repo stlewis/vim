@@ -3,8 +3,9 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 " Vundle Base Plugins
-Plugin 'gmarik/Vundle.vim'
-" Dependency Plugins
+ Plugin 'gmarik/Vundle.vim'
+
+ " Dependency Plugins
 Plugin 'tomtom/tlib_vim'
 Plugin 'git://github.com/MarcWeber/vim-addon-mw-utils.git'
 
@@ -22,6 +23,8 @@ Plugin 'flazz/vim-colorschemes'
 Plugin 'vim-scripts/taglist.vim'
 Plugin 'reedes/vim-pencil'
 Plugin 'reedes/vim-colors-pencil'
+Plugin 'reedes/vim-thematic'
+Plugin 'junegunn/goyo'
 Plugin 'vimoutliner/vimoutliner'
 Plugin 'yegappan/mru'
 Plugin 'Valloric/YouCompleteMe'
@@ -69,7 +72,6 @@ Plugin 'OmniSharp/omnisharp-vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 Plugin 'othree/html5.vim'
-Plugin 'reedes/vim-thematic'
 
 call vundle#end()
 
@@ -82,17 +84,21 @@ let mapleader=","
 
 
 " Editor view stuff
+set background=dark
 syntax on
-colorscheme xterm16
-"colorscheme pencil
+set termguicolors
+colorscheme solarized8_dark
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+
 
 set clipboard=unnamed " On mac, allow copy/paste between vim and everything else
 set pastetoggle=<Leader>p
+set mouse=a
 set number " Show the current line number instead of 0
 set relativenumber " But all other line numbers are relative to the current one
 set nowrap
 set scrolloff=1
-set background=dark
 if has('gui_running')
   set guifont=Source\ Code\ Powerline:h18
 endif
@@ -185,7 +191,8 @@ au FileType xml,xsd,html let b:delimitMate_matchpairs = "(:),[:],{:}"
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline_powerline_fonts = 1
-let g:airline_theme='distinguished'
+let g:airline_theme='solarized'
+let g:airline_solarized_bg='dark'
 
 " Remap tabline buffer switching to behave like tab switching
 noremap gt :bnext<CR>
@@ -215,28 +222,6 @@ nmap <silent> <Leader>s :TestNearest<CR>
 nmap <silent> <Leader>S :TestFile<CR>
 nmap <silent> <Leader>A :TestSuite<CR>
 
-let g:pencil#autoformat=1
-let g:pencil#textwidth=80
-augroup pencil
-  autocmd!
-  autocmd FileType markdown,mkd call pencil#init()
-  autocmd FileType text call pencil#init()
-augroup END
-
-let g:thematic#themes = {
-\ 'writing' : {
-\               'colorscheme': 'pencil',
-\               'background': 'dark',
-\               'airline-theme': 'dark',
-\               'ruler': 0,
-\               'sign-column-color-fix': 1,
-\               'number-column-color-mute': 1
-\                },
-\ }
-
-
-
-
 " Supertab for Omnisharp and other omnisharp settings
 let g:SuperTabDefaultCompletionType = '<C-n>'
 let g:SuperTabContextDefaultCompletionType = "<c-x><c-o>"
@@ -250,7 +235,7 @@ let g:SuperTabClosePreviewOnPopupClose = 1
 "let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 
 " better key bindings for UltiSnipsExpandTrigger
-let g:UltiSnipsExpandTrigger = "<Leader><Space>"
+let g:UltiSnipsExpandTrigger = "<C-Space>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
@@ -260,14 +245,48 @@ let g:NERDDefaultAlign='left'
 map <Leader>// <Plug>NERDCommenterToggle('n', 'Toggle')<Cr>
 
 set completeopt=longest,menuone,preview
-let g:pencil_terminal_italics = 1
 
 function! JrnlSettings()
+  set background=light
+  colorscheme solarized8_light
   set ft=markdown
   set spell
   set foldcolumn=10
   set foldmethod=manual
+  set textwidth=80
   NERDTreeClose
-  Thematic writing
+  let g:airline_theme="solarized"
+  set noruler
+  set nonumber norelativenumber
+  hi htmlItalic cterm=italic
+  hi htmlBold cterm=bold
 endfunction
+
 command! JrnlSettings call JrnlSettings()
+
+let g:pencil#autoformat=1
+let g:pencil#textwidth=80
+let g:pencil_terminal_italics = 1
+
+augroup pencil
+  autocmd!
+  autocmd FileType markdown,mkd call pencil#init({'wrap': 'soft'})
+  autocmd FileType text call pencil#init({'wrap': 'soft'})
+  autocmd FileType otl call pencil#init({'wrap': 'soft'})}
+augroup END
+
+let g:thematic#themes = {
+\ 'writing'      : {
+\                    'colorscheme': 'solarized8_light',
+\                    'background': 'light',
+\                    'ruler': 0,
+\                    'airline-theme': 'solarized',
+\                    'sign-column-color-fix': 1,
+\                    'normal-column-color-mute': 1,
+\                   }
+\ }
+
+
+" Ruby specific stuff
+let ruby_operators = 1
+"set iskeyword-=_
