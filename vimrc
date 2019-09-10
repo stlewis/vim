@@ -11,26 +11,18 @@ Plugin 'git://github.com/MarcWeber/vim-addon-mw-utils.git'
 
 "UI/UX Plugins
 Plugin 'scrooloose/nerdtree'
-Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'kien/ctrlp.vim'
 Plugin 'vim-scripts/CSApprox'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'vim-scripts/bufkill.vim'
-Plugin 'xolox/vim-misc'
-Plugin 'xolox/vim-colorscheme-switcher'
 Plugin 'flazz/vim-colorschemes'
-Plugin 'vim-scripts/taglist.vim'
 Plugin 'reedes/vim-pencil'
 Plugin 'reedes/vim-colors-pencil'
-Plugin 'reedes/vim-thematic'
 Plugin 'junegunn/goyo'
 Plugin 'vimoutliner/vimoutliner'
 Plugin 'yegappan/mru'
-Plugin 'Valloric/YouCompleteMe'
-
-" Input modification Plugins
-Plugin 'vim-scripts/Mouse-Toggle'
+Plugin 'ycm-core/YouCompleteMe'
 
 " Shortcut/Snippet Plugins
 Plugin 'SirVer/ultisnips'
@@ -49,9 +41,6 @@ Plugin 'mileszs/ack.vim'
 Plugin 'tpope/vim-bundler'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-dispatch'
-Plugin 'tpope/vim-fireplace.git'
-Plugin 'tpope/vim-leiningen.git'
-
 
 " Syntax/Language Support Plugins
 Plugin 'scrooloose/syntastic'
@@ -66,7 +55,6 @@ Plugin 'janko-m/vim-test'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'elixir-lang/vim-elixir'
 Plugin 'leafgarland/typescript-vim'
-Plugin 'caglartoklu/ftcolor.vim'
 Plugin 'OrangeT/vim-csharp'
 Plugin 'OmniSharp/omnisharp-vim'
 Plugin 'pangloss/vim-javascript'
@@ -86,21 +74,20 @@ let mapleader=","
 " Editor view stuff
 set background=dark
 syntax on
-set termguicolors
 colorscheme solarized8_dark
-let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
+set termguicolors
 
 
 set clipboard=unnamed " On mac, allow copy/paste between vim and everything else
-set pastetoggle=<Leader>p
 set mouse=a
 set number " Show the current line number instead of 0
 set relativenumber " But all other line numbers are relative to the current one
 set nowrap
 set scrolloff=1
 if has('gui_running')
-  set guifont=Source\ Code\ Powerline:h18
+  set guifont=Source\ Code\ Powerline:h22
 endif
 set foldmethod=manual
 set foldlevelstart=99
@@ -115,8 +102,6 @@ set shiftround
 set showmatch
 set ignorecase
 set smartcase
-
-
 
 " Backups and swaps
 set nobackup
@@ -142,8 +127,6 @@ nnoremap <Up> :resize -5<CR>
 " Remap semi-colon to colon to save a shift keystroke
 noremap ; :
 
-noremap <F10> :RandomColorScheme<CR>
-
 " Quick mode switch
 set timeoutlen=1000 ttimeoutlen=0
 " Allow for hidden unsaved buffers
@@ -152,8 +135,6 @@ set hidden
 
 " Cursor is always a block, even in insert mode.
 set guicursor+=i:block-Cursor
-"set cursorline
-
 
 " Regex settings
 nnoremap / /\v
@@ -172,12 +153,7 @@ autocmd BufWritePre * :%s/\s\+$//e
 " JSX stuff
 let g:jsx_ext_required = 0
 
-" NerdTree Tweaks
-let g:nerdtree_tabs_open_on_console_startup=2
-
-map <F2> :NERDTreeTabsToggle <CR>
-let NERDTreeAutoDeleteBuffer = 1
-let NERDTreeCascadeSingleChildDir=0
+map <F2> :NERDTreeToggle <CR>
 
 " CtrlP Tweaks
 let g:ctrlp_map = '<Leader>t'
@@ -228,8 +204,6 @@ let g:SuperTabContextDefaultCompletionType = "<c-x><c-o>"
 let g:SuperTabDefaultCompletionTypeDiscovery = ["&omnifunc:<c-x><c-o>","&completefunc:<c-x><c-n>"]
 let g:SuperTabClosePreviewOnPopupClose = 1
 
-
-
 " make YCM compatible with UltiSnips (using supertab)
 "let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
 "let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
@@ -251,13 +225,8 @@ function! JrnlSettings()
   colorscheme solarized8_light
   set ft=markdown
   set spell
-  set foldcolumn=10
-  set foldmethod=manual
-  set textwidth=80
   NERDTreeClose
   let g:airline_theme="solarized"
-  set noruler
-  set nonumber norelativenumber
   hi htmlItalic cterm=italic
   hi htmlBold cterm=bold
 endfunction
@@ -274,18 +243,6 @@ augroup pencil
   autocmd FileType text call pencil#init({'wrap': 'soft'})
   autocmd FileType otl call pencil#init({'wrap': 'soft'})}
 augroup END
-
-let g:thematic#themes = {
-\ 'writing'      : {
-\                    'colorscheme': 'solarized8_light',
-\                    'background': 'light',
-\                    'ruler': 0,
-\                    'airline-theme': 'solarized',
-\                    'sign-column-color-fix': 1,
-\                    'normal-column-color-mute': 1,
-\                   }
-\ }
-
 
 " Ruby specific stuff
 let ruby_operators = 1
