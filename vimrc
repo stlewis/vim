@@ -13,8 +13,6 @@ Plugin 'git://github.com/MarcWeber/vim-addon-mw-utils.git'
 "UI/UX Plugins
 Plugin 'scrooloose/nerdtree'
 Plugin 'vim-scripts/CSApprox'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
 Plugin 'vim-scripts/bufkill.vim'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'reedes/vim-pencil'
@@ -22,6 +20,7 @@ Plugin 'reedes/vim-colors-pencil'
 Plugin 'junegunn/goyo'
 Plugin 'vimoutliner/vimoutliner'
 Plugin 'yegappan/mru'
+Plugin 'itchyny/lightline.vim'
 
 " Shortcut/Snippet Plugins
 Plugin 'SirVer/ultisnips'
@@ -70,6 +69,7 @@ set noshowmatch
 set noshowmode
 set backspace=2
 let mapleader=","
+set laststatus=2
 
 
 " Editor view stuff
