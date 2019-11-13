@@ -1,5 +1,6 @@
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
+set rtp+=/usr/local/opt/fzf
 call vundle#begin()
 
 " Vundle Base Plugins
@@ -11,7 +12,6 @@ Plugin 'git://github.com/MarcWeber/vim-addon-mw-utils.git'
 
 "UI/UX Plugins
 Plugin 'scrooloose/nerdtree'
-Plugin 'kien/ctrlp.vim'
 Plugin 'vim-scripts/CSApprox'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
@@ -22,7 +22,6 @@ Plugin 'reedes/vim-colors-pencil'
 Plugin 'junegunn/goyo'
 Plugin 'vimoutliner/vimoutliner'
 Plugin 'yegappan/mru'
-Plugin 'ycm-core/YouCompleteMe'
 
 " Shortcut/Snippet Plugins
 Plugin 'SirVer/ultisnips'
@@ -31,6 +30,8 @@ Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat.git'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'Raimondi/delimitMate'
+Plugin 'ycm-core/YouCompleteMe'
+Plugin 'junegunn/fzf.vim'
 
 " Other source modification plugins
 Plugin 'godlygeek/tabular'
@@ -74,7 +75,8 @@ let mapleader=","
 " Editor view stuff
 set background=dark
 syntax on
-colorscheme solarized8_dark
+"colorscheme solarized8_dark
+colorscheme jellybeans
 let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
 set termguicolors
@@ -155,9 +157,8 @@ let g:jsx_ext_required = 0
 
 map <F2> :NERDTreeToggle <CR>
 
-" CtrlP Tweaks
-let g:ctrlp_map = '<Leader>t'
-let g:ctrlp_cmd = 'CtrlPMixed'
+"" fzf tweaks
+map <Leader>t :Files<CR>
 
 " Tweak matched pair handling for HTML files
 au FileType xml,xsd,html let b:delimitMate_matchpairs = "(:),[:],{:}"
