@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =1
+let g:netrw_dirhist_1='/Users/stevelewis/Projects/Auditor/lib/db_cloner'
+let g:netrw_dirhist_0='/Users/stevelewis/Projects/Auditor/lib'
+let g:netrw_dirhist_9='/Users/stevelewis/Projects/Auditor'
+let g:netrw_dirhist_8='/usr/local/Cellar/neovim/0.4.3/share/nvim'
+let g:netrw_dirhist_7='/usr/local/Cellar/neovim/0.4.3/share/nvim/runtime'
+let g:netrw_dirhist_6='/usr/local/Cellar/neovim/0.4.3/share/nvim/runtime/compiler'
+let g:netrw_dirhist_5='/usr/local/Cellar/neovim/0.4.3/share/nvim/runtime'
+let g:netrw_dirhist_4='/usr/local/Cellar/neovim/0.4.3/share/nvim/runtime/compiler'
+let g:netrw_dirhist_3='/usr/local/Cellar/neovim/0.4.3/share/nvim/runtime'
+let g:netrw_dirhist_2='/usr/local/Cellar/neovim/0.4.3/share/nvim/runtime/doc'

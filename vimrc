@@ -1,67 +1,53 @@
 filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
 set rtp+=/usr/local/opt/fzf
-call vundle#begin()
+call plug#begin('~/.vim/plugged')
 
-" Vundle Base Plugins
- Plugin 'gmarik/Vundle.vim'
-
- " Dependency Plugins
-Plugin 'tomtom/tlib_vim'
-Plugin 'git://github.com/MarcWeber/vim-addon-mw-utils.git'
 
 "UI/UX Plugins
-Plugin 'scrooloose/nerdtree'
-Plugin 'vim-scripts/CSApprox'
-Plugin 'vim-scripts/bufkill.vim'
-Plugin 'flazz/vim-colorschemes'
-Plugin 'reedes/vim-pencil'
-Plugin 'reedes/vim-colors-pencil'
-Plugin 'junegunn/goyo'
-Plugin 'vimoutliner/vimoutliner'
-Plugin 'yegappan/mru'
-Plugin 'itchyny/lightline.vim'
+Plug 'vim-scripts/CSApprox'
+Plug 'vim-scripts/bufkill.vim'
+Plug 'flazz/vim-colorschemes'
+Plug 'reedes/vim-pencil'
+Plug 'reedes/vim-colors-pencil'
+Plug 'junegunn/goyo'
+Plug 'vimoutliner/vimoutliner'
+Plug 'yegappan/mru'
+Plug 'itchyny/lightline.vim'
+Plug 'ap/vim-buftabline'
 
 " Shortcut/Snippet Plugins
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-repeat.git'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'Raimondi/delimitMate'
-Plugin 'ycm-core/YouCompleteMe'
-Plugin 'junegunn/fzf.vim'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat.git'
+Plug 'scrooloose/nerdcommenter'
+Plug 'Raimondi/delimitMate'
+Plug 'ycm-core/YouCompleteMe'
+Plug 'junegunn/fzf.vim'
 
 " Other source modification plugins
-Plugin 'godlygeek/tabular'
-Plugin 'terryma/vim-multiple-cursors'
+Plug 'godlygeek/tabular'
+Plug 'terryma/vim-multiple-cursors'
 
 " External Tools Plugins
-Plugin 'mileszs/ack.vim'
-Plugin 'tpope/vim-bundler'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-dispatch'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-dispatch'
 
 " Syntax/Language Support Plugins
-Plugin 'scrooloose/syntastic'
-Plugin 'kchmck/vim-coffee-script'
-Plugin 'slim-template/vim-slim'
-Plugin 'stlewis/vim-rails'
-Plugin 'digitaltoad/vim-jade'
-Plugin 'groenewege/vim-less'
-Plugin 'sukima/xmledit'
-Plugin 'thoughtbot/vim-rspec'
-Plugin 'janko-m/vim-test'
-Plugin 'plasticboy/vim-markdown'
-Plugin 'elixir-lang/vim-elixir'
-Plugin 'leafgarland/typescript-vim'
-Plugin 'OrangeT/vim-csharp'
-Plugin 'OmniSharp/omnisharp-vim'
-Plugin 'pangloss/vim-javascript'
-Plugin 'mxw/vim-jsx'
-Plugin 'othree/html5.vim'
+Plug 'scrooloose/syntastic'
+Plug 'slim-template/vim-slim'
+Plug 'stlewis/vim-rails'
+Plug 'digitaltoad/vim-jade'
+Plug 'groenewege/vim-less'
+Plug 'sukima/xmledit'
+Plug 'janko-m/vim-test'
+Plug 'plasticboy/vim-markdown'
+Plug 'leafgarland/typescript-vim'
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
+Plug 'othree/html5.vim'
 
-call vundle#end()
+call plug#end()
 
 filetype plugin indent on
 set nocompatible
@@ -155,7 +141,14 @@ autocmd BufWritePre * :%s/\s\+$//e
 " JSX stuff
 let g:jsx_ext_required = 0
 
-map <F2> :NERDTreeToggle <CR>
+" Open netrw in a vertical split
+map <F2> :Vexplore <CR>
+" Other netrw tweaks to get us into NERDTree-ish mode
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 4
+let g:netrw_altv = 1
+let g:netrw_winsize = 15
 
 "" fzf tweaks
 map <Leader>t :Files<CR>
@@ -165,11 +158,7 @@ au FileType xml,xsd,html let b:delimitMate_matchpairs = "(:),[:],{:}"
 
 
 " Tabline Fix
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#fnamemod = ':t'
-let g:airline_powerline_fonts = 1
-let g:airline_theme='solarized'
-let g:airline_solarized_bg='dark'
+let g:buftabline_indicators = 1
 
 " Remap tabline buffer switching to behave like tab switching
 noremap gt :bnext<CR>
@@ -182,38 +171,15 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 nnoremap <C-h> <C-w>h
 
-" Configure Ack.vim to use ag instead of ack
-let g:ackprg = 'ag --nogroup --nocolor --column'
-" Configure Ack.vim to search in the background using vim-dispatch
-let g:ack_use_dispatch = 1
-
-" Configure vim-rspec commands
-"map <Leader>s :call RunNearestSpec()<CR>
-"map <Leader>S :call RunCurrentSpecFile()<CR>
-"map <Leader>a :call RunAllSpecs()<CR>
-"let g:rspec_command = 'Dispatch bundle exec rspec {spec}'
-"setl errorformat+=%+G%.%#
-
 let test#strategy = "dispatch"
 nmap <silent> <Leader>s :TestNearest<CR>
 nmap <silent> <Leader>S :TestFile<CR>
 nmap <silent> <Leader>A :TestSuite<CR>
 
-" Supertab for Omnisharp and other omnisharp settings
-let g:SuperTabDefaultCompletionType = '<C-n>'
-let g:SuperTabContextDefaultCompletionType = "<c-x><c-o>"
-let g:SuperTabDefaultCompletionTypeDiscovery = ["&omnifunc:<c-x><c-o>","&completefunc:<c-x><c-n>"]
-let g:SuperTabClosePreviewOnPopupClose = 1
-
-" make YCM compatible with UltiSnips (using supertab)
-"let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-"let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-
 " better key bindings for UltiSnipsExpandTrigger
 let g:UltiSnipsExpandTrigger = "<C-Space>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
-
 
 " Options for NerdCommenter
 let g:NERDDefaultAlign='left'
@@ -226,7 +192,6 @@ function! JrnlSettings()
   colorscheme solarized8_light
   set ft=markdown
   set spell
-  NERDTreeClose
   let g:airline_theme="solarized"
   hi htmlItalic cterm=italic
   hi htmlBold cterm=bold
