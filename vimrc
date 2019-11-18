@@ -6,7 +6,6 @@ call plug#begin('~/.vim/plugged')
 "UI/UX Plugins
 Plug 'vim-scripts/CSApprox'
 Plug 'vim-scripts/bufkill.vim'
-Plug 'flazz/vim-colorschemes'
 Plug 'reedes/vim-pencil'
 Plug 'reedes/vim-colors-pencil'
 Plug 'junegunn/goyo.vim'
@@ -34,6 +33,9 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-dispatch'
 
 " Syntax/Language Support Plugins
+Plug 'xolox/vim-colorscheme-switcher'
+Plug 'flazz/vim-colorschemes'
+Plug 'rafi/awesome-vim-colorschemes'
 Plug 'scrooloose/syntastic'
 Plug 'slim-template/vim-slim'
 Plug 'stlewis/vim-rails'
