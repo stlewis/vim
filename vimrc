@@ -2,7 +2,6 @@ filetype off
 set rtp+=/usr/local/opt/fzf
 call plug#begin('~/.vim/plugged')
 
-
 "UI/UX Plugins
 Plug 'vim-scripts/CSApprox'
 Plug 'vim-scripts/bufkill.vim'
@@ -33,6 +32,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-dispatch'
 
 " Syntax/Language Support Plugins
+Plug 'xolox/vim-misc'
 Plug 'xolox/vim-colorscheme-switcher'
 Plug 'flazz/vim-colorschemes'
 Plug 'rafi/awesome-vim-colorschemes'
@@ -55,19 +55,28 @@ filetype plugin indent on
 set nocompatible
 set noshowmatch
 set noshowmode
-set backspace=2
+set backspace=indent,eol,start
 let mapleader=","
+nmap <silent> <leader>ev :e $MYVIMRC<CR>
+nmap <silent> <leader>sv :so $MYVIMRC<CR>
 set laststatus=2
 
 
 " Editor view stuff
 set background=dark
 syntax on
-"colorscheme solarized8_dark
-colorscheme jellybeans
+colorscheme antares
+map <F9> :RandomColorScheme<CR>
+
 let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
 set termguicolors
+
+" Persistent Undo management
+set undofile
+set undodir=~/.vim/undodir
+
+
 
 
 set clipboard=unnamed " On mac, allow copy/paste between vim and everything else
@@ -86,12 +95,13 @@ set foldlevelstart=99
 " File formatting
 set expandtab
 set tabstop=2
+set autoindent
 set copyindent
 set shiftwidth=2
 set shiftround
-set showmatch
 set ignorecase
 set smartcase
+set smarttab
 
 " Backups and swaps
 set nobackup
@@ -117,11 +127,8 @@ nnoremap <Up> :resize -5<CR>
 " Remap semi-colon to colon to save a shift keystroke
 noremap ; :
 
-" Quick mode switch
-set timeoutlen=1000 ttimeoutlen=0
 " Allow for hidden unsaved buffers
 set hidden
-
 
 " Cursor is always a block, even in insert mode.
 set guicursor+=i:block-Cursor
@@ -151,9 +158,20 @@ let g:netrw_liststyle = 3
 let g:netrw_browse_split = 4
 let g:netrw_altv = 1
 let g:netrw_winsize = 15
+let ghregex='\(^\|\s\s\)\zs\.\S\+'
+let g:netrw_list_hide=ghregex
 
 "" fzf tweaks
 map <Leader>t :Files<CR>
+
+" Lightline config
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ 'active': {
+      \   'left': [['mode', 'paste'], ['gitbranch', 'readonly', 'filename', 'modified']]
+      \ },
+      \ 'component_function': { 'gitbranch': 'fugitive#head' }
+      \}
 
 " Tweak matched pair handling for HTML files
 au FileType xml,xsd,html let b:delimitMate_matchpairs = "(:),[:],{:}"
@@ -180,8 +198,8 @@ nmap <silent> <Leader>A :TestSuite<CR>
 
 " better key bindings for UltiSnipsExpandTrigger
 let g:UltiSnipsExpandTrigger = "<C-Space>"
-let g:UltiSnipsJumpForwardTrigger = "<tab>"
-let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+let g:UltiSnipsJumpForwardTrigger = "<Tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<S-Tab>"
 
 " Options for NerdCommenter
 let g:NERDDefaultAlign='left'
