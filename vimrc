@@ -49,6 +49,9 @@ Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'othree/html5.vim'
 
+" Vim behavior modification
+Plug 'chaoren/vim-wordmotion'
+
 call plug#end()
 
 filetype plugin indent on
@@ -65,7 +68,7 @@ set laststatus=2
 " Editor view stuff
 set background=dark
 syntax on
-colorscheme antares
+colorscheme twilight256
 map <F9> :RandomColorScheme<CR>
 
 let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
@@ -75,6 +78,7 @@ set termguicolors
 " Persistent Undo management
 set undofile
 set undodir=~/.vim/undodir
+nohlsearch
 
 
 
