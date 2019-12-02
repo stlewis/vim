@@ -12,6 +12,7 @@ Plug 'vimoutliner/vimoutliner'
 Plug 'yegappan/mru'
 Plug 'itchyny/lightline.vim'
 Plug 'ap/vim-buftabline'
+Plug 'scrooloose/nerdtree'
 
 " Shortcut/Snippet Plugins
 Plug 'SirVer/ultisnips'
@@ -37,17 +38,10 @@ Plug 'xolox/vim-colorscheme-switcher'
 Plug 'flazz/vim-colorschemes'
 Plug 'rafi/awesome-vim-colorschemes'
 Plug 'scrooloose/syntastic'
-Plug 'slim-template/vim-slim'
 Plug 'stlewis/vim-rails'
-Plug 'digitaltoad/vim-jade'
-Plug 'groenewege/vim-less'
 Plug 'sukima/xmledit'
 Plug 'janko-m/vim-test'
-Plug 'plasticboy/vim-markdown'
-Plug 'leafgarland/typescript-vim'
-Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx'
-Plug 'othree/html5.vim'
+Plug 'sheerun/vim-polyglot'
 
 " Vim behavior modification
 Plug 'chaoren/vim-wordmotion'
@@ -154,16 +148,7 @@ autocmd BufWritePre * :%s/\s\+$//e
 " JSX stuff
 let g:jsx_ext_required = 0
 
-" Open netrw in a vertical split
-map <F2> :Vexplore <CR>
-" Other netrw tweaks to get us into NERDTree-ish mode
-let g:netrw_banner = 0
-let g:netrw_liststyle = 3
-let g:netrw_browse_split = 4
-let g:netrw_altv = 1
-let g:netrw_winsize = 15
-let ghregex='\(^\|\s\s\)\zs\.\S\+'
-let g:netrw_list_hide=ghregex
+map <F2> :NERDTreeToggle<CR>
 
 "" fzf tweaks
 map <Leader>t :Files<CR>
@@ -212,11 +197,8 @@ map <Leader>// <Plug>NERDCommenterToggle('n', 'Toggle')<Cr>
 set completeopt=longest,menuone,preview
 
 function! JrnlSettings()
-  set background=light
-  colorscheme solarized8_light
   set ft=markdown
   set spell
-  let g:airline_theme="solarized"
   hi htmlItalic cterm=italic
   hi htmlBold cterm=bold
 endfunction
