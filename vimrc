@@ -13,6 +13,7 @@ Plug 'yegappan/mru'
 Plug 'itchyny/lightline.vim'
 Plug 'ap/vim-buftabline'
 Plug 'scrooloose/nerdtree'
+Plug 'kshenoy/vim-signature'
 
 " Shortcut/Snippet Plugins
 Plug 'SirVer/ultisnips'
@@ -79,8 +80,17 @@ nohlsearch
 
 set clipboard=unnamed " On mac, allow copy/paste between vim and everything else
 set mouse=a
+
+" Line number hacks
 set number " Show the current line number instead of 0
 set relativenumber " But all other line numbers are relative to the current one
+:augroup numbertoggle
+:  autocmd!
+:  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+:  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+:augroup END
+
+
 set nowrap
 set scrolloff=1
 if has('gui_running')
@@ -181,9 +191,9 @@ nnoremap <C-l> <C-w>l
 nnoremap <C-h> <C-w>h
 
 let test#strategy = "dispatch"
-nmap <silent> <Leader>s :TestNearest<CR>
-nmap <silent> <Leader>S :TestFile<CR>
-nmap <silent> <Leader>A :TestSuite<CR>
+nmap <silent> <Leader>s :wall<CR>:TestNearest<CR>
+nmap <silent> <Leader>S :wall<CR>:TestFile<CR>
+nmap <silent> <Leader>A :wall<CR>:TestSuite<CR>
 
 " better key bindings for UltiSnipsExpandTrigger
 let g:UltiSnipsExpandTrigger = "<C-Space>"
