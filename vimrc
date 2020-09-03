@@ -14,16 +14,15 @@ Plug 'itchyny/lightline.vim'
 Plug 'ap/vim-buftabline'
 Plug 'scrooloose/nerdtree'
 Plug 'kshenoy/vim-signature'
-
 " Shortcut/Snippet Plugins
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'scrooloose/nerdcommenter'
 Plug 'Raimondi/delimitMate'
-Plug 'ycm-core/YouCompleteMe'
 Plug 'junegunn/fzf.vim'
+" Note that ruby support requires solargraph gem and coc-solargraph
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'honza/vim-snippets'
 
 " Other source modification plugins
 Plug 'godlygeek/tabular'
@@ -46,6 +45,7 @@ Plug 'sheerun/vim-polyglot'
 
 " Vim behavior modification
 Plug 'chaoren/vim-wordmotion'
+Plug 'Konfekt/FastFold'
 
 call plug#end()
 
@@ -63,7 +63,8 @@ set laststatus=2
 " Editor view stuff
 set background=dark
 syntax on
-colorscheme twilight256
+"colorscheme refactor
+colorscheme clearance
 map <F9> :RandomColorScheme<CR>
 
 let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
@@ -98,6 +99,7 @@ if has('gui_running')
 endif
 set foldmethod=manual
 set foldlevelstart=99
+let g:ruby_fold=1
 
 
 " File formatting
@@ -194,11 +196,41 @@ let test#strategy = "dispatch"
 nmap <silent> <Leader>s :wall<CR>:TestNearest<CR>
 nmap <silent> <Leader>S :wall<CR>:TestFile<CR>
 nmap <silent> <Leader>A :wall<CR>:TestSuite<CR>
+let test#ruby#rails#executable = 'm'
 
-" better key bindings for UltiSnipsExpandTrigger
-let g:UltiSnipsExpandTrigger = "<C-Space>"
-let g:UltiSnipsJumpForwardTrigger = "<Tab>"
-let g:UltiSnipsJumpBackwardTrigger = "<S-Tab>"
+" Keybindings and settings for CoC (Completion stuff)
+set updatetime=300
+set shortmess +=c
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> to trigger completion.
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
+else
+  inoremap <silent><expr> <c-@> coc#refresh()
+endif
+
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
+" position. Coc only does snippet and additional edit on confirm.
+" <cr> could be remapped by other vim plugin, try `:verbose imap <CR>`.
+if exists('*complete_info')
+  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+else
+  inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+endif
+
 
 " Options for NerdCommenter
 let g:NERDDefaultAlign='left'
