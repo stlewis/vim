@@ -1,1 +1,1 @@
-/Users/stlewis/.vimrc
+vimrc

@@ -42,6 +42,7 @@ Plug 'stlewis/vim-rails'
 Plug 'sukima/xmledit'
 Plug 'janko-m/vim-test'
 Plug 'sheerun/vim-polyglot'
+Plug 'ngmy/vim-rubocop'
 
 " Vim behavior modification
 Plug 'chaoren/vim-wordmotion'
@@ -51,7 +52,7 @@ call plug#end()
 
 filetype plugin indent on
 set nocompatible
-set noshowmatch
+set showmatch " noshowmatch
 set noshowmode
 set backspace=indent,eol,start
 let mapleader=","
@@ -63,6 +64,8 @@ set laststatus=2
 " Editor view stuff
 set background=dark
 syntax on
+nohlsearch
+set incsearch
 "colorscheme refactor
 colorscheme clearance
 map <F9> :RandomColorScheme<CR>
@@ -74,10 +77,6 @@ set termguicolors
 " Persistent Undo management
 set undofile
 set undodir=~/.vim/undodir
-nohlsearch
-
-
-
 
 set clipboard=unnamed " On mac, allow copy/paste between vim and everything else
 set mouse=a
@@ -90,6 +89,12 @@ augroup numbertoggle
   autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu | set rnu   | endif
   autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu | set nornu | endif
 augroup END
+
+augroup lichscripts
+  au!
+  autocmd BufNewFile,BufRead *.lic   set ft=ruby
+augroup END
+
 
 
 set nowrap
@@ -161,7 +166,7 @@ autocmd BufWritePre * :%s/\s\+$//e
 let g:jsx_ext_required = 0
 
 map <F2> :NERDTreeToggle<CR>
-
+let g:NERDTreeWinPos = "right"
 "" fzf tweaks
 map <Leader>t :Files<CR>
 
@@ -196,7 +201,7 @@ let test#strategy = "dispatch"
 nmap <silent> <Leader>s :wall<CR>:TestNearest<CR>
 nmap <silent> <Leader>S :wall<CR>:TestFile<CR>
 nmap <silent> <Leader>A :wall<CR>:TestSuite<CR>
-let test#ruby#rails#executable = 'm'
+let test#ruby#rails#executable = 'bundle exec m'
 
 " Keybindings and settings for CoC (Completion stuff)
 set updatetime=300
