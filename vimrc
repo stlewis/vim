@@ -5,8 +5,6 @@ call plug#begin('~/.vim/plugged')
 "UI/UX Plugins
 Plug 'vim-scripts/CSApprox'
 Plug 'vim-scripts/bufkill.vim'
-Plug 'reedes/vim-pencil'
-Plug 'reedes/vim-colors-pencil'
 Plug 'junegunn/goyo.vim'
 Plug 'vimoutliner/vimoutliner'
 Plug 'yegappan/mru'
@@ -14,6 +12,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'ap/vim-buftabline'
 Plug 'scrooloose/nerdtree'
 Plug 'kshenoy/vim-signature'
+Plug 'romainl/vim-qf'
 " Shortcut/Snippet Plugins
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
@@ -31,6 +30,7 @@ Plug 'terryma/vim-multiple-cursors'
 " External Tools Plugins
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-dispatch'
+Plug 'preservim/vimux'
 
 " Syntax/Language Support Plugins
 Plug 'xolox/vim-misc'
@@ -39,10 +39,10 @@ Plug 'flazz/vim-colorschemes'
 Plug 'rafi/awesome-vim-colorschemes'
 Plug 'scrooloose/syntastic'
 Plug 'stlewis/vim-rails'
-Plug 'sukima/xmledit'
 Plug 'janko-m/vim-test'
 Plug 'sheerun/vim-polyglot'
 Plug 'ngmy/vim-rubocop'
+Plug 'mattn/emmet-vim'
 
 " Vim behavior modification
 Plug 'chaoren/vim-wordmotion'
@@ -84,6 +84,8 @@ set mouse=a
 " Line number hacks
 set number " Show the current line number instead of 0
 set relativenumber " But all other line numbers are relative to the current one
+
+" When in insert mode, show absolute line numbers instead of relative
 augroup numbertoggle
   autocmd!
   autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu | set rnu   | endif
@@ -95,8 +97,6 @@ augroup lichscripts
   autocmd BufNewFile,BufRead *.lic   set ft=ruby
 augroup END
 
-
-
 set nowrap
 set scrolloff=1
 if has('gui_running')
@@ -105,7 +105,6 @@ endif
 set foldmethod=manual
 set foldlevelstart=99
 let g:ruby_fold=1
-
 
 " File formatting
 set expandtab
@@ -201,7 +200,6 @@ let test#strategy = "dispatch"
 nmap <silent> <Leader>s :wall<CR>:TestNearest<CR>
 nmap <silent> <Leader>S :wall<CR>:TestFile<CR>
 nmap <silent> <Leader>A :wall<CR>:TestSuite<CR>
-let test#ruby#rails#executable = 'bundle exec m'
 
 " Keybindings and settings for CoC (Completion stuff)
 set updatetime=300
@@ -266,3 +264,7 @@ augroup END
 " Ruby specific stuff
 let ruby_operators = 1
 "set iskeyword-=_
+
+" JSON formatting
+com! FormatJSON %!python -m json.tool
+
