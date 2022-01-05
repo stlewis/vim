@@ -43,10 +43,12 @@ Plug 'janko-m/vim-test'
 Plug 'sheerun/vim-polyglot'
 Plug 'ngmy/vim-rubocop'
 Plug 'mattn/emmet-vim'
+Plug 'chaimleib/vim-renpy'
 
 " Vim behavior modification
 Plug 'chaoren/vim-wordmotion'
 Plug 'Konfekt/FastFold'
+Plug 'preservim/vim-pencil'
 
 call plug#end()
 
@@ -145,7 +147,7 @@ noremap ; :
 set hidden
 
 " Cursor is always a block, even in insert mode.
-set guicursor+=i:block-Cursor
+set guicursor+=i:block
 
 " Regex settings
 nnoremap / /\v
