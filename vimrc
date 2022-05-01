@@ -83,7 +83,7 @@ endif
 
 
 " Editor view stuff
-colorscheme one
+colorscheme OceanicNext
 set background=dark
 let g:one_allow_italics = 1
 
@@ -167,8 +167,6 @@ noremap ; :
 " Allow for hidden unsaved buffers
 set hidden
 
-" Cursor is always a block, even in insert mode.
-set guicursor+=i:block
 
 " Regex settings
 nnoremap / /\v
