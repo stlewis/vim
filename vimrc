@@ -3,10 +3,8 @@ set rtp+=/usr/local/opt/fzf
 call plug#begin('~/.vim/plugged')
 
 "UI/UX Plugins
-Plug 'vim-scripts/CSApprox'
 Plug 'vim-scripts/bufkill.vim'
 Plug 'junegunn/goyo.vim'
-Plug 'vimoutliner/vimoutliner'
 Plug 'yegappan/mru'
 Plug 'itchyny/lightline.vim'
 Plug 'ap/vim-buftabline'
@@ -24,13 +22,11 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'honza/vim-snippets'
 
 " Other source modification plugins
-Plug 'godlygeek/tabular'
 Plug 'terryma/vim-multiple-cursors'
 
 " External Tools Plugins
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-dispatch'
-Plug 'preservim/vimux'
 
 " Syntax/Language Support Plugins
 Plug 'xolox/vim-misc'
