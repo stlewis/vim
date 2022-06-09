@@ -4,13 +4,11 @@ call plug#begin('~/.vim/plugged')
 
 "UI/UX Plugins
 Plug 'vim-scripts/bufkill.vim'
-Plug 'junegunn/goyo.vim'
 Plug 'yegappan/mru'
-Plug 'itchyny/lightline.vim'
-Plug 'ap/vim-buftabline'
 Plug 'scrooloose/nerdtree'
-Plug 'kshenoy/vim-signature'
 Plug 'romainl/vim-qf'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 " Shortcut/Snippet Plugins
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
@@ -27,6 +25,7 @@ Plug 'terryma/vim-multiple-cursors'
 " External Tools Plugins
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-dispatch'
+Plug 'airblade/vim-gitgutter'
 
 " Syntax/Language Support Plugins
 Plug 'xolox/vim-misc'
@@ -39,13 +38,10 @@ Plug 'janko-m/vim-test'
 Plug 'sheerun/vim-polyglot'
 Plug 'ngmy/vim-rubocop'
 Plug 'mattn/emmet-vim'
-Plug 'chaimleib/vim-renpy'
-Plug 'rakr/vim-one'
 
 " Vim behavior modification
 Plug 'chaoren/vim-wordmotion'
 Plug 'Konfekt/FastFold'
-Plug 'preservim/vim-pencil'
 Plug 'vim-utils/vim-ruby-fold'
 
 call plug#end()
@@ -81,7 +77,6 @@ endif
 " Editor view stuff
 colorscheme OceanicNext
 set background=dark
-let g:one_allow_italics = 1
 
 
 syntax on
@@ -91,7 +86,10 @@ map <F9> :RandomColorScheme<CR>
 
 let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
-set termguicolors
+
+if (has("termguicolors"))
+  set termguicolors
+endif
 
 " Persistent Undo management
 set undofile
@@ -100,21 +98,7 @@ set undodir=~/.vim/undodir
 set clipboard=unnamed " On mac, allow copy/paste between vim and everything else
 set mouse=a
 
-" Line number hacks
-set number " Show the current line number instead of 0
-set relativenumber " But all other line numbers are relative to the current one
-
-" When in insert mode, show absolute line numbers instead of relative
-augroup numbertoggle
-  autocmd!
-  autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu | set rnu   | endif
-  autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu | set nornu | endif
-augroup END
-
-augroup lichscripts
-  au!
-  autocmd BufNewFile,BufRead *.lic   set ft=ruby
-augroup END
+set number
 
 set nowrap
 set scrolloff=1
@@ -151,18 +135,11 @@ set visualbell
 set noerrorbells
 
 
-" Make arrow keys do something useful, resize the viewports accordingly
-nnoremap <Right> :vertical resize +5<CR>
-nnoremap <Left> :vertical resize -5<CR>
-nnoremap <Down> :resize +5<CR>
-nnoremap <Up> :resize -5<CR>
-
 " Remap semi-colon to colon to save a shift keystroke
 noremap ; :
 
 " Allow for hidden unsaved buffers
 set hidden
-
 
 " Regex settings
 nnoremap / /\v
@@ -186,21 +163,8 @@ let g:NERDTreeWinPos = "right"
 "" fzf tweaks
 map <Leader>t :Files<CR>
 
-" Lightline config
-let g:lightline = {
-      \ 'colorscheme': 'one',
-      \ 'active': {
-      \   'left': [['mode', 'paste'], ['gitbranch', 'readonly', 'filename', 'modified']]
-      \ },
-      \ 'component_function': { 'gitbranch': 'fugitive#head' }
-      \}
-
 " Tweak matched pair handling for HTML files
 au FileType xml,xsd,html let b:delimitMate_matchpairs = "(:),[:],{:}"
-
-
-" Tabline Fix
-let g:buftabline_indicators = 1
 
 " Remap tabline buffer switching to behave like tab switching
 noremap gt :bnext<CR>
@@ -258,26 +222,6 @@ map <Leader>// <Plug>NERDCommenterToggle('n', 'Toggle')<Cr>
 
 set completeopt=longest,menuone,preview
 
-function! JrnlSettings()
-  set ft=markdown
-  set spell
-  hi htmlItalic cterm=italic
-  hi htmlBold cterm=bold
-endfunction
-
-command! JrnlSettings call JrnlSettings()
-
-let g:pencil#autoformat=1
-let g:pencil#textwidth=80
-let g:pencil_terminal_italics = 1
-
-augroup pencil
-  autocmd!
-  autocmd FileType markdown,mkd call pencil#init({'wrap': 'soft'})
-  autocmd FileType text call pencil#init({'wrap': 'soft'})
-  autocmd FileType otl call pencil#init({'wrap': 'soft'})}
-augroup END
-
 " Ruby specific stuff
 let ruby_operators = 1
 "set iskeyword-=_
@@ -285,6 +229,9 @@ let ruby_operators = 1
 " syntastic tweaks
 let g:syntastic_python_python_exec = 'python3'
 let g:syntastic_python_checkers = ['python']
+
+" Airline
+let g:airline#extensions#tabline#enabled = 1
 
 " JSON formatting
 com! FormatJSON %!python -m json.tool
